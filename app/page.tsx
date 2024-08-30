@@ -1,14 +1,22 @@
+import Link from 'next/link';
+
+import { Comparison } from '@/components/comparison';
 import { Headline } from '@/components/headline';
-import { Navbar } from '@/components/navbar';
+
+import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
   return (
-    <div className='h-full min-h-screen w-full dark:bg-black bg-white dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative'>
-      <div className='absolute pointer-events-none flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
-
-      <div className='flex flex-col items-center'>
-        <Navbar />
+    <div className='flex flex-col items-center pt-12'>
+      <div className='flex flex-col gap-y-10'>
         <Headline />
+        <Comparison />
+        <Link
+          href='/proofread'
+          className='px-6 py-2.5 bg-black text-white rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400 max-w-[200px] w-full self-center flex justify-center'
+        >
+          Try Now <ArrowRight className='h-5 w-5 self-center ml-1.5' />
+        </Link>
       </div>
     </div>
   )
