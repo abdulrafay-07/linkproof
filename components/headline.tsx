@@ -7,7 +7,7 @@ export const Headline = () => {
             AI in seconds
             </span>
          </h1>
-         <p className='text-center text-gray-500 font-semibold'>You don't need to log in or subscribe.</p>
+         <p className='text-center text-gray-500 font-semibold'>You don&apos;t need to log in or subscribe.</p>
       </div>
    )
 };
