@@ -57,6 +57,9 @@ const Proofread = () => {
 
    return (
       <div className='flex flex-col items-center py-16 sm:py-28 max-w-5xl mx-auto px-4 md:px-8 xl:px-0'>
+         <h2 className='font-semibold text-gray-500'>
+            Note: AI might not proofread small posts &#40;less than 50 characters&#41; correctly.
+         </h2>
          <div className='flex flex-col md:flex-row md:justify-evenly items-center w-full gap-10'>
             <InputPost
                input={input}
