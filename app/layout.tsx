@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 
 import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
 
 const font = Poppins({
   subsets: ['latin'],
@@ -22,11 +23,14 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={font.className}>
-        <main className='h-full min-h-screen w-full dark:bg-black bg-white dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative'>
-          <div className='absolute pointer-events-none flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
-          <Navbar />
-          {children}
-        </main>
+        <div className="min-h-screen flex flex-col">
+          <main className="flex-grow relative dark:bg-black bg-white dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">
+            <Navbar />
+            <div className="absolute pointer-events-none flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

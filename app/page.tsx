@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
   return (
-    <div className='flex flex-col items-center pt-16'>
+    <div className='flex flex-col items-center pt-16 sm:py-16'>
       <div className='flex flex-col gap-y-12'>
         <Headline />
         <Comparison />
