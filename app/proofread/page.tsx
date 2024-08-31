@@ -29,7 +29,7 @@ const Proofread = () => {
    };
 
    return (
-      <div className='flex flex-col items-center pt-16 sm:py-28 max-w-5xl mx-auto px-4 md:px-8 xl:px-0'>
+      <div className='flex flex-col items-center py-16 sm:py-28 max-w-5xl mx-auto px-4 md:px-8 xl:px-0'>
          <div className='flex flex-col md:flex-row md:justify-evenly items-center w-full gap-10'>
             <InputPost
                input={input}
