@@ -4,6 +4,7 @@ import './globals.css';
 
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
+import { Toaster } from 'react-hot-toast';
 
 const font = Poppins({
   subsets: ['latin'],
@@ -30,6 +31,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <Toaster />
         </div>
       </body>
     </html>

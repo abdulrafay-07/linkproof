@@ -4,7 +4,13 @@ import { useState } from 'react';
 
 import { Check, Copy } from 'lucide-react';
 
-export const OutputPost = () => {
+interface OutputPostProps {
+   content: string;
+};
+
+export const OutputPost = ({
+   content,
+}: OutputPostProps) => {
    const [error, setError] = useState<string | null>(null);
    const [isCopied, setIsCopied] = useState(false);
 
@@ -33,6 +39,7 @@ export const OutputPost = () => {
          </div>
          <textarea
             id='output-field'
+            defaultValue={content.length > 0 ? content: ''}
             className='resize-none p-2 border rounded'
             placeholder="Hey everyone, Just a quick update! I'm starting a new position as a Software Engineer at @LinkedIn."
             rows={6}

@@ -5,11 +5,17 @@ import { useState } from 'react';
 import { InputPost } from '@/components/proofread/input-post';
 import { OutputPost } from '@/components/proofread/output-post';
 
+import toast from 'react-hot-toast';
 import { IconArrowNarrowDown, IconArrowNarrowRight } from '@tabler/icons-react';
+import axios, { AxiosError } from 'axios';
+
+import { ApiResponse } from '@/types/api-response';
+import { Check, X } from 'lucide-react';
 
 const Proofread = () => {
    const [isEnhancing, setIsEnhancing] = useState(false);
    const [input, setInput] = useState('');
+   const [output, setOutput] = useState('');
    const [error, setError] = useState('');
 
    const handleEnhancePost = async () => {
@@ -19,9 +25,30 @@ const Proofread = () => {
       };
       setIsEnhancing(true);
       try {
-         console.log(input);
+         const response = await axios.post<ApiResponse>('/api/proofread', { input });
+
+         if (!response.data.success) {
+            toast(response.data.message);
+         };
+
+         toast(response.data.message, {
+            icon: <Check />,
+            style: {
+               background: '#4caf50',
+               color: '#fff'
+            },
+         });
+         setOutput(response.data.output);
       } catch (error) {
-         
+         const axiosError = error as AxiosError<ApiResponse>;
+         console.log(axiosError);
+         toast(axiosError.response?.data.message!, {
+            icon: <X />,
+            style: {
+               background: '#f44336',
+               color: '#fff'
+            },
+         });
       } finally {
          setError('');
          setIsEnhancing(false);
@@ -41,7 +68,9 @@ const Proofread = () => {
             />
             <IconArrowNarrowRight height={40} width={40} className='hidden md:flex' />
             <IconArrowNarrowDown height={40} width={40} className='flex md:hidden' />
-            <OutputPost />
+            <OutputPost
+               content={output}
+            />
          </div>
       </div>
    )

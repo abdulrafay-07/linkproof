@@ -26,13 +26,13 @@ export const Footer = () => {
          <div className='hidden md:flex md:items-center gap-x-2'>
             <h4 className='font-semibold text-lg'>Follow me on | </h4>
             <div className='flex items-center gap-x-2.5'>
-               <Link href='https://x.com/swe_rafay'>
+               <Link href='https://x.com/swe_rafay' target='_blank'>
                   <IconBrandX height={28} width={28} />
                </Link>
-               <Link href='https://github.com/abdulrafay-07'>
+               <Link href='https://github.com/abdulrafay-07' target='_blank'>
                   <IconBrandGithub height={28} width={28} />
                </Link>
-               <Link href='https://medium.com/@abdul-rafay'>
+               <Link href='https://medium.com/@abdul-rafay' target='_blank'>
                   <IconBrandMedium height={28} width={28} />
                </Link>
             </div>
