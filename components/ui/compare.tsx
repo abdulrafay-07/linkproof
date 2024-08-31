@@ -30,6 +30,7 @@ export const Compare = ({
    autoplay = false,
    autoplayDuration = 5000,
 }: CompareProps) => {
+   const [isPlaying, setIsPlaying] = useState(true);
    const [sliderXPercent, setSliderXPercent] = useState(initialSliderPercentage);
    const [isDragging, setIsDragging] = useState(false);
 
@@ -49,22 +50,20 @@ export const Compare = ({
    const startAutoplay = useCallback(() => {
       if (!autoplay) return;
       
-      const startTime = Date.now();
-      const animate = () => {
-      const elapsedTime = Date.now() - startTime;
-      const progress = elapsedTime / autoplayDuration;
-      const percentage = Math.min(progress * 100, 100);
-   
-      setSliderXPercent(percentage);
-   
-      if (progress < 1) {
-         autoplayRef.current = setTimeout(animate, 16); // ~60fps
-      } else {
-         stopAutoplay(); // Stop autoplay once it reaches 100%
-         setTimeout(() => {
-            setSliderXPercent(50); // Reset to 50% after autoplay
-         }, 500); // Add a small delay if needed
-      }
+         const startTime = Date.now();
+         const animate = () => {
+         const elapsedTime = Date.now() - startTime;
+         const progress = elapsedTime / autoplayDuration;
+         const percentage = Math.min(progress * 100, 100);
+
+         setSliderXPercent(percentage);
+
+         if (progress < 1) {
+            autoplayRef.current = setTimeout(animate, 16); // ~60fps
+         } else {
+            stopAutoplay(); // Stop autoplay once it reaches 100%
+            setIsPlaying(false);
+         }
       };
       
       animate();
@@ -83,7 +82,7 @@ export const Compare = ({
    function mouseLeaveHandler() {
       setIsMouseOver(false);
       if (slideMode === 'hover') {
-         setSliderXPercent(initialSliderPercentage);
+         setSliderXPercent(100);
       }
       if (slideMode === 'drag') {
          setIsDragging(false);
@@ -161,16 +160,16 @@ export const Compare = ({
          className={cn('w-[400px] h-[400px] overflow-hidden', className)}
          style={{
          position: 'relative',
-         cursor: slideMode === 'drag' ? 'grab' : 'col-resize',
+         // cursor: slideMode === 'drag' ? 'grab' : 'col-resize',
          }}
-         onMouseMove={handleMouseMove}
-         onMouseLeave={mouseLeaveHandler}
-         onMouseEnter={mouseEnterHandler}
-         onMouseDown={handleMouseDown}
-         onMouseUp={handleMouseUp}
-         onTouchStart={handleTouchStart}
-         onTouchEnd={handleTouchEnd}
-         onTouchMove={handleTouchMove}
+         onMouseMove={!isPlaying ? handleMouseMove : undefined}
+         onMouseLeave={!isPlaying ?  mouseLeaveHandler : undefined}
+         onMouseEnter={!isPlaying ?  mouseEnterHandler : undefined}
+         onMouseDown={!isPlaying ?  handleMouseDown : undefined}
+         onMouseUp={!isPlaying ?  handleMouseUp : undefined}
+         onTouchStart={!isPlaying ?  handleTouchStart : undefined}
+         onTouchEnd={!isPlaying ?  handleTouchEnd : undefined}
+         onTouchMove={!isPlaying ?  handleTouchMove : undefined}
       >
          <AnimatePresence initial={false}>
          <motion.div

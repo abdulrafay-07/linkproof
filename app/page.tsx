@@ -7,8 +7,8 @@ import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
   return (
-    <div className='flex flex-col items-center pt-12'>
-      <div className='flex flex-col gap-y-10'>
+    <div className='flex flex-col items-center pt-16'>
+      <div className='flex flex-col gap-y-12'>
         <Headline />
         <Comparison />
         <Link
