@@ -15,7 +15,7 @@ export const Footer = () => {
             >
                Abdul Rafay
                <Image
-                  src='/pfp.jfif'
+                  src={'/pfp.png'}
                   alt='Profile Picture'
                   className='rounded-full aspect-square ml-1'
                   width={35}
