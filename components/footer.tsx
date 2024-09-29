@@ -17,7 +17,7 @@ export const Footer = () => {
                <Image
                   src={'/pfp.png'}
                   alt='Profile Picture'
-                  className='rounded-full aspect-square ml-1'
+                  className='rounded-full aspect-square ml-1 object-cover'
                   width={35}
                   height={35}
                />
